@@ -1,0 +1,66 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Fitness API",
+    "version": "1.0.0",
+    "description": "API for workouts and exercises"
+  },
+  "paths": {
+    "/workouts": {
+      "get": {
+        "summary": "Get all workouts",
+        "responses": {
+          "200": { "description": "Success" }
+        }
+      },
+      "post": {
+        "summary": "Create workout",
+        "responses": {
+          "201": { "description": "Created" }
+        }
+      }
+    },
+    "/workouts/{id}": {
+      "put": {
+        "summary": "Update workout",
+        "responses": {
+          "204": { "description": "Updated" }
+        }
+      },
+      "delete": {
+        "summary": "Delete workout",
+        "responses": {
+          "200": { "description": "Deleted" }
+        }
+      }
+    },
+    "/exercises": {
+      "get": {
+        "summary": "Get all exercises",
+        "responses": {
+          "200": { "description": "Success" }
+        }
+      },
+      "post": {
+        "summary": "Create exercise",
+        "responses": {
+          "201": { "description": "Created" }
+        }
+      }
+    },
+    "/exercises/{id}": {
+      "put": {
+        "summary": "Update exercise",
+        "responses": {
+          "204": { "description": "Updated" }
+        }
+      },
+      "delete": {
+        "summary": "Delete exercise",
+        "responses": {
+          "200": { "description": "Deleted" }
+        }
+      }
+    }
+  }
+}
