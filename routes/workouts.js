@@ -3,6 +3,12 @@ const router = express.Router();
 
 const controller = require('../controllers/workouts');
 
+const verifyToken = require('../middleware/auth');
+
+router.post('/', verifyToken, controller.createWorkout);
+router.put('/:id', verifyToken, controller.updateWorkout);
+router.delete('/:id', verifyToken, controller.deleteWorkout);
+
 router.get('/', controller.getAll);
 router.get('/:id', controller.getSingle);
 router.post('/', controller.createWorkout);
