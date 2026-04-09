@@ -23,6 +23,7 @@ const register = async (req, res) => {
 // LOGIN
 const login = async (req, res) => {
   try {
+    
     const user = await mongodb
       .getDb()
       .collection('users')
@@ -31,6 +32,11 @@ const login = async (req, res) => {
     if (!user) {
       return res.status(400).json({ message: "User not found" });
     }
+
+    // 🔥 DEBUG AQUÍ
+    console.log("USER:", user);
+    console.log("PASSWORD SENT:", req.body.password);
+    console.log("HASH IN DB:", user.password);
 
     const valid = await bcrypt.compare(req.body.password, user.password);
 

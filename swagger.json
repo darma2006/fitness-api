@@ -5,7 +5,60 @@
     "version": "1.0.0",
     "description": "API for workouts and exercises"
   },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
   "paths": {
+    "/auth/register": {
+  "post": {
+    "summary": "Register user",
+    "requestBody": {
+      "required": true,
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "username": { "type": "string" },
+              "password": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "201": { "description": "User created" }
+    }
+  }
+},
+"/auth/login": {
+  "post": {
+    "summary": "Login user",
+    "requestBody": {
+      "required": true,
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "username": { "type": "string" },
+              "password": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": { "description": "Returns JWT token" }
+    }
+  }
+},
     "/workouts": {
       "get": {
         "summary": "Get all workouts",
@@ -15,6 +68,27 @@
       },
       "post": {
         "summary": "Create workout",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "duration": { "type": "number" },
+                  "caloriesBurned": { "type": "number" },
+                  "date": { "type": "string" },
+                  "difficulty": { "type": "string" },
+                  "type": { "type": "string" },
+                  "notes": { "type": "string" },
+                  "trainer": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "201": { "description": "Created" }
         }
@@ -23,12 +97,24 @@
     "/workouts/{id}": {
       "put": {
         "summary": "Update workout",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
         "responses": {
           "204": { "description": "Updated" }
         }
       },
       "delete": {
         "summary": "Delete workout",
+        "security": [{ "bearerAuth": [] }],
         "responses": {
           "200": { "description": "Deleted" }
         }
@@ -43,6 +129,17 @@
       },
       "post": {
         "summary": "Create exercise",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
         "responses": {
           "201": { "description": "Created" }
         }
@@ -51,12 +148,24 @@
     "/exercises/{id}": {
       "put": {
         "summary": "Update exercise",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
         "responses": {
           "204": { "description": "Updated" }
         }
       },
       "delete": {
         "summary": "Delete exercise",
+        "security": [{ "bearerAuth": [] }],
         "responses": {
           "200": { "description": "Deleted" }
         }
